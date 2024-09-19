@@ -1,4 +1,8 @@
 # Proyecto-TC1031
+
+### Alfredo Alejandro Soto Herrera
+### A01711368
+
 Repositorio en el que se encuentra el proyecto de la materia TC1031, incluyendo el main y los respectivos .h de este trabajo.
 Este trabajo consiste en la creación de una agencia automovilística, en la cual se observan los datos del vehiculo y su precio de venta y en base a este precio se ordenan de menor a mayor.
 
