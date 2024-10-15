@@ -11,15 +11,18 @@
 #include <iostream> // Para imprimir
 // bicliotecas con las clases a utilizar en el proyecto.
 #include "vehiculo.h"
-#include "agencia.h"
+#include "bst.h"
 
 using namespace std;
 
-int main(){
-  Agencia agencia;
-  agencia.crea_agencia();
-  agencia.ordena_precio();
-  agencia.mostrar_info();
+int main() {
+    ArbolBST agencia;
+    string nombreArchivo = "vehiculos.csv"; 
 
-  return 0;
+    agencia.leerCSV(nombreArchivo);
+
+    std::cout << "Vehiculos en orden por year:" << std::endl;
+    agencia.inOrder();
+
+    return 0;
 }
