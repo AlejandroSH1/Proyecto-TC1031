@@ -12,17 +12,28 @@
 // bicliotecas con las clases a utilizar en el proyecto.
 #include "vehiculo.h"
 #include "bst.h"
+#include "sort.h"
 
 using namespace std;
 
 int main() {
-    ArbolBST agencia;
+    ArbolBST arbol;
     string nombreArchivo = "vehiculos.csv"; 
 
-    agencia.leerCSV(nombreArchivo);
+    arbol.leerCSV(nombreArchivo);
 
-    std::cout << "Vehiculos en orden por year:" << std::endl;
-    agencia.inOrder();
+    vector<Vehiculo> vehiculos = arbol.sortVe();
+
+    Sort bubble;
+    bubble.bubbleSort(vehiculos);
+
+    cout << "Vehiculos ordenados segun su precio de Venta: " << endl;
+    for (size_t i = 0; i < vehiculos.size(); ++i) {
+            vehiculos[i].mostrar_info();
+            if (i != vehiculos.size() - 1) {
+                cout << ",\n";
+            }
+        }
 
     return 0;
 }
