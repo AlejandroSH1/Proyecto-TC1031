@@ -48,9 +48,9 @@ public:
   double getValorCompra(){
     return valor_compra;
   };
-// Meétodos
-  void mostrar_info();
-  double calcula_precio_venta();
+// Métodos
+  void mostrar_info() const;
+  double calcula_precio_venta() const;
 
 };
 
@@ -62,11 +62,12 @@ public:
   *@param
   *@return void
 */
-void Vehiculo :: mostrar_info(){
+void Vehiculo :: mostrar_info() const {
   cout << "Marca: " << marca << endl;
   cout << "Modelo: " << modelo << endl;
   cout << "Uso: " << uso << " km" << endl;
   cout << "Year: " << year << endl;
+  cout << "Precio de Venta: " << calcula_precio_venta() << endl;
   cout << endl;
   };
 
@@ -81,7 +82,7 @@ void Vehiculo :: mostrar_info(){
   *@param
   *@return double del valor en el que se venderá el vehiculo.
 */
-double Vehiculo :: calcula_precio_venta(){
+double Vehiculo :: calcula_precio_venta() const{
   double venta_inicial = valor_compra;
   if (uso < 20000){
     venta_inicial = venta_inicial + 10000;
