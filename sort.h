@@ -13,7 +13,7 @@
 #include "bst.h"
 #include "vehiculo.h"
 #include <iostream>
-#include <algorithm>
+#include <algorithm> // Nos permite hacer uso de la función swap.
 
 // Declaro la clase Sort
 class Sort{
@@ -24,7 +24,8 @@ public:
   *
   * Utilizando el método de Bubble sort, se ordena el vector.
   *
-  * Complejidad: O(n^2) en el peor de los casos.
+  * Complejidad temporal: O(n^2) en el peor de los casos.
+  * Complejidad espacial: O(1).
   * 
   *@param vector
   *@return void
