@@ -226,6 +226,15 @@ void ArbolBST :: agregaVehiculo(){
 
     Vehiculo vehi(marca, modelo, uso, year, valorCompra);
     insertar(vehi);
+
+    // En este punto guardamos el vehiculo agregado al archivo .csv
+    ofstream archivo("vehiculos.csv", ios::app);
+    if (archivo.is_open()) {
+        archivo << marca << "," << modelo << "," << uso << "," << year << "," << valorCompra << "\n";
+        archivo.close();
+    } else {
+        cout << "Error al abrir el archivo vehiculos.csv para guardar el vehículo.";
+    }
 }
 
 #endif
