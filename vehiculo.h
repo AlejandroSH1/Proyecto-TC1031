@@ -14,7 +14,7 @@
 using namespace std;
 
 // Declaro la calse vehiculo
-class Vehiculo {
+class Vehiculo {  
 // Declaro variables
 protected:
   string marca;
@@ -59,6 +59,9 @@ public:
   *
   * Imprime la marca, modelo, uso y año.
   *
+  * Complejidad temporal: O(1) en el peor de los casos.
+  * Complejidad espacial: O(1).
+  * 
   *@param
   *@return void
 */
@@ -79,6 +82,9 @@ void Vehiculo :: mostrar_info() const {
   * Dependiendo de los valores de uso y año, se agrega valor al vehiculo o se 
   * le disminuye.
   *
+  * Complejidad temporal: O(1) en el peor de los casos.
+  * Complejidad espacial: O(1).
+  * 
   *@param
   *@return double del valor en el que se venderá el vehiculo.
 */
