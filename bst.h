@@ -197,11 +197,25 @@ void ArbolBST::leerCSV(const string& nombreArchivo) {
     archivo.close();
 }
 
+/**
+  * buscarPrecio(int, NodoBST*) realiza una busqueda de un vehiculo
+  *
+  * Busca en el árbol binario el valor del precio de venta que el usuario 
+  * ingresa y en base a este valor, se recorre el árbol.
+  *
+  * Complejidad temporal: O(log n) en el mejor caso y O(n) en el peor caso.
+  * Complejidad espacial: O(log n) en el mejor caso y O(n) en el peor caso.
+  * 
+  *@param int, NodoBST*
+  *@return Vehiculo*
+*/
 const Vehiculo* ArbolBST::buscarPrecio(int venta, NodoBST* nodo) const {
     if (nodo == nullptr) {
         return nullptr;
     }
 
+    /* Checa valores de tolerancia para que al introducir el usuario el precio,
+     lo pueda encontrar.*/
     const double tolerancia = 0.01;
     if (fabs(nodo->vehiculo.calcula_precio_venta() - venta) < tolerancia) {
         return &(nodo->vehiculo);
@@ -214,6 +228,18 @@ const Vehiculo* ArbolBST::buscarPrecio(int venta, NodoBST* nodo) const {
     }
 }
 
+/**
+  * buscarVehiculo(int) función auxiliar para llamar a buscarPrecio(int, NodoBST*)
+  *
+  * Simplemente llama a la función buscarPrecio(int, NodoBST*) y se manda a 
+  * llamar desde el main esta función.
+  *
+  * Complejidad temporal: O(log n) en el mejor caso y O(n) en el peor caso.
+  * Complejidad espacial: O(log n) en el mejor caso y O(n) en el peor caso.
+  * 
+  *@param int
+  *@return Vehiculo*
+*/
 const Vehiculo* ArbolBST::buscarVehiculo(int precio) {
     return buscarPrecio(precio, raiz);
 }
