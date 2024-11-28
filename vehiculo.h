@@ -50,7 +50,7 @@ public:
   };
 // Métodos
   void mostrar_info() const;
-  double calcula_precio_venta() const;
+  int calcula_precio_venta() const;
 
 };
 
@@ -88,8 +88,8 @@ void Vehiculo :: mostrar_info() const {
   *@param
   *@return double del valor en el que se venderá el vehiculo.
 */
-double Vehiculo :: calcula_precio_venta() const{
-  double venta_inicial = valor_compra;
+int Vehiculo :: calcula_precio_venta() const{
+  int venta_inicial = valor_compra;
   if (uso < 20000){
     venta_inicial = venta_inicial + 10000;
   }
@@ -101,7 +101,7 @@ double Vehiculo :: calcula_precio_venta() const{
   else
   venta_inicial = venta_inicial - 500;
 
-  double venta_final = venta_inicial * 1.15;
+  int venta_final = venta_inicial * 1.15;
   return venta_final;
 };
 
