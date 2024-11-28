@@ -15,6 +15,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -32,6 +33,7 @@ public:
     // Métodos
     NodoBST* insertar(Vehiculo v);
     void inOrder(vector<Vehiculo>&) const;
+    friend class ArbolBST;
 };
 
 /**
@@ -50,18 +52,17 @@ public:
 NodoBST* NodoBST::insertar(Vehiculo v) {
     if (v.getYear() < vehiculo.getYear()) {
         if (izquierda == nullptr) {
-            izquierda = new NodoBST(v);
+            izquierda = new NodoBST(v); // Crear nuevo nodo en la izquierda
         } else {
-            izquierda = izquierda->insertar(v);
+            izquierda->insertar(v);    // Recursión hacia la izquierda
         }
     } else {
         if (derecha == nullptr) {
-            derecha = new NodoBST(v);
+            derecha = new NodoBST(v); // Crear nuevo nodo en la derecha
         } else {
-            derecha = derecha->insertar(v);
+            derecha->insertar(v);    // Recursión hacia la derecha
         }
     }
-    return this;
 }
 
 /**
@@ -96,6 +97,8 @@ public:
     void insertar(Vehiculo v);
     vector<Vehiculo> sortVe() const;
     void leerCSV(const string& nombreArchivo);
+    const Vehiculo* buscarPrecio(int venta, NodoBST* nodo) const;
+    const Vehiculo* buscarVehiculo(int precio);
     void agregaVehiculo();
 };
 
@@ -192,6 +195,27 @@ void ArbolBST::leerCSV(const string& nombreArchivo) {
         }
     }
     archivo.close();
+}
+
+const Vehiculo* ArbolBST::buscarPrecio(int venta, NodoBST* nodo) const {
+    if (nodo == nullptr) {
+        return nullptr;
+    }
+
+    const double tolerancia = 0.01;
+    if (fabs(nodo->vehiculo.calcula_precio_venta() - venta) < tolerancia) {
+        return &(nodo->vehiculo);
+    }
+
+    if (venta < nodo->vehiculo.calcula_precio_venta()) {
+        return buscarPrecio(venta, nodo->izquierda);
+    } else {
+        return buscarPrecio(venta, nodo->derecha);
+    }
+}
+
+const Vehiculo* ArbolBST::buscarVehiculo(int precio) {
+    return buscarPrecio(precio, raiz);
 }
 
 /**
