@@ -19,7 +19,7 @@
 class Sort{
 public:
 /**
-  * bubbleSort(vector<Vehiculo>& vec) le aplica bubble sort al vector de los
+  * bubbleSort_Venta(vector<Vehiculo>& vec) le aplica bubble sort al vector de los
   * vehículos de menor a mayor.
   *
   * Utilizando el método de Bubble sort, se ordena el vector.
@@ -30,12 +30,36 @@ public:
   *@param vector
   *@return void
 */
-    void bubbleSort(vector<Vehiculo>& vec) {
+    void bubbleSort_Venta(vector<Vehiculo>& vec) {
         int n = vec.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
             
                 if (vec[j].calcula_precio_venta() > vec[j + 1].calcula_precio_venta()) {
+                    swap(vec[j], vec[j + 1]); 
+                }
+            }
+        }
+    }
+
+/**
+  * bubbleSort_Year(vector<Vehiculo>& vec) le aplica bubble sort al vector de los
+  * vehículos de menor a mayor, ordenándolos por año.
+  *
+  * Utilizando el método de Bubble sort, se ordena el vector.
+  *
+  * Complejidad temporal: O(n^2) en el peor de los casos.
+  * Complejidad espacial: O(1).
+  * 
+  *@param vector
+  *@return void
+*/
+    void bubbleSort_Year(vector<Vehiculo>& vec) {
+        int n = vec.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+            
+                if (vec[j].getYear() > vec[j + 1].getYear()) {
                     swap(vec[j], vec[j + 1]); 
                 }
             }
