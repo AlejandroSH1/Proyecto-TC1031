@@ -27,41 +27,75 @@ int main() {
     // Creamos el vector en donde se guardan los datos del árbol.
     vector<Vehiculo> vehiculos = arbol.sortVe();
 
-    // Aplicamos BubbleSort al vector.
-    Sort bubble;
-    bubble.bubbleSort(vehiculos);
+    int respuesta = 5;
 
-    // Imprimimos el vector ordenado.
-    cout << "Vehiculos ordenados segun su precio de Venta: " << endl;
-    for (size_t i = 0; i < vehiculos.size(); ++i) {
-            vehiculos[i].mostrar_info();
-    }
+    while(respuesta < 6){
+        cout << "------------------------------" << endl;
+        cout << "Escoge una opcion: " << endl;
+        cout << "1) Mostrar lista de Vehiculos" << endl;
+        cout << "2) Ordenar por precio de venta" << endl;
+        cout << "3) Ordenar por anio" << endl;
+        cout << "4) Buscar Vehiculo" << endl;
+        cout << "5) Agregar Vehiculo" << endl;
+        cout << "6) Salir" << endl;
+        cout << "Responde con el numero de la opcion: " << endl;
+        cin >> respuesta;
+        cout << "------------------------------" << endl;
 
-    // Le preguntamos al usuario si desea agregar más vehículos.
-    string agregar, entra;
-    cout << "Deseas agregar un vehiculo? (si/no): ";
-    cin >> agregar;
-    if(agregar == "si") entra = "si"; {}
-
-    while(agregar == "si"){
-        arbol.agregaVehiculo();
-        vehiculos = arbol.sortVe();
-        cout << "\nDeseas agregar otro vehiculo? (si/no): ";
-        cin >> agregar;
-    }
-
-    if (entra == "si"){
-        // Finalmente preguntamos si se requiere volver a mostrar la lista.
-        string mostrar;
-        cout << "\nVolver a mostrar la lista de Vehiculos? (si/no): ";
-        cin >> mostrar;
-
-        if(mostrar == "si"){
-            bubble.bubbleSort(vehiculos);
-            cout << "\nVehiculos ordenados segun su precio de Venta: " << endl;
+        if(respuesta == 1){
             for (size_t i = 0; i < vehiculos.size(); ++i) {
-                vehiculos[i].mostrar_info();
+            vehiculos[i].mostrar_info();
             }
+        }
+
+        if(respuesta == 2){
+            Sort bubbleVenta;
+            bubbleVenta.bubbleSort_Venta(vehiculos);
+
+            string impri;
+            cout << "Imprimir la agencia ordenada? (si/no) "<< endl;
+            cin >> impri;
+
+            if(impri == "si"){
+                for (size_t i = 0; i < vehiculos.size(); ++i) {
+                    vehiculos[i].mostrar_info();
+                }
+            }
+        }
+
+        if(respuesta == 3){
+            Sort bubbleYear;
+            bubbleYear.bubbleSort_Year(vehiculos);
+
+            string impri2;
+            cout << "Imprimir la agencia ordenada? (si/no) "<< endl;
+            cin >> impri2;
+
+            if(impri2 == "si"){
+                for (size_t i = 0; i < vehiculos.size(); ++i) {
+                    vehiculos[i].mostrar_info();
+                }
+            }
+        }
+
+        if(respuesta == 4){
+            int precio;
+            cout << "Introduce el precio de venta del auto a buscar: " << endl;
+            cin >> precio;
+
+            const Vehiculo* vehiculoEncontrado = arbol.buscarVehiculo(precio);
+
+            if (vehiculoEncontrado != nullptr) {
+            cout << "Vehiculo encontrado: " << endl;
+            vehiculoEncontrado->mostrar_info();
+            } else {
+            cout << "No se encontro un vehiculo con ese precio de venta." << std::endl;
+            }   
+        }
+
+        if(respuesta == 5){
+            arbol.agregaVehiculo();
+            vehiculos = arbol.sortVe();
         }
     }
 
